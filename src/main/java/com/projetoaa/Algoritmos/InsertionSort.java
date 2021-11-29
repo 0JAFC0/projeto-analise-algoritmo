@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Stopwatch;
 import com.projetoaa.Uteis.GeradorDeArrays;
+import com.projetoaa.Uteis.TiposOrdenacao;
 
 public class InsertionSort {
 
@@ -24,22 +25,25 @@ public class InsertionSort {
             array[i+1] = key; 
             quantMovRegistro++;
         }
-        System.out.println(quantComp);
-        System.out.println(quantMovRegistro);
         quantComp++;
     } 
     
     public static void main(String a[]){
-        int t = 1000000;
+        int t = 10000;
         
-        // System.out.println(Arrays.toString(arr1));
+        Integer[] arr1 = new GeradorDeArrays().geradorDeArray(t, TiposOrdenacao.ALEATORIO);
         
         Stopwatch relogio = Stopwatch.createStarted();
-        Integer[] arr1 = new GeradorDeArrays().geradorDeArrayOrdenado(new Integer[t], "");  
+        insertionSort(arr1);//sorting array using insertion sort    
         relogio.stop();
         System.out.println(relogio.elapsed(TimeUnit.MILLISECONDS));
-        // insertionSort(arr1);//sorting array using insertion sort    
-        
+
+        arr1 = new GeradorDeArrays().geradorDeArray(t, TiposOrdenacao.DECRESCENTE);
+
+        relogio = Stopwatch.createStarted();
+        insertionSort(arr1);//sorting array using insertion sort    
+        relogio.stop();
+        System.out.println(relogio.elapsed(TimeUnit.MILLISECONDS));
         // System.out.println("After Insertion Sort");    
         // for(Integer i:arr1){    
         //     System.out.print(i+" ");    
