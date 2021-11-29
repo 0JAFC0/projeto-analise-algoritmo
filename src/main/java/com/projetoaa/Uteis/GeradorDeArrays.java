@@ -1,32 +1,52 @@
 package com.projetoaa.Uteis;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class GeradorDeArrays {
 
-	public Integer[] geradorDeArrayOrdenado(Integer[] vetor, String tipoOrdem) {
+	public Integer[] geradorDeArray(int quantidade, TiposOrdenacao tipoOrdem) {
 
-		boolean flag = true;
-		int index = 0;
-		while(flag){
-			Integer n = (int)(Math.random()*((int)vetor.length*10));
+		// boolean flag = true;
+		// int ultimoNumero = 2;
+		// int index = 0;
+		
+		// while(flag){
+			// 	Integer n = (int)(Math.random()*ultimoNumero);
 			
-			if(index==vetor.length){
-				flag = false;
-			}else if(!contains(vetor, n)){
-				vetor[index] = n;
-				if(index>1){
-					if(tipoOrdem.toLowerCase().equals("crescente")){
-						ordenar(vetor);
-					}else if(tipoOrdem.toLowerCase().equals("decrescente")){
-						ordenaInvensamente(vetor);
-					}
-				}
-				index++;
-			}
+			// 	if(index==vetor.length-1){
+				// 		flag = false;
+				// 	}else if(!contains(vetor, n)){
+					// 		vetor[index] = n;
+					// 		ultimoNumero = vetor[index] + 1;
+					
+					// 		index++;
+					// 	}
+					// }
+		Integer[] temp = IntStream.of(IntStream.range(1, quantidade).toArray()).boxed().toArray(Integer[]::new);
+					
+		if(tipoOrdem == TiposOrdenacao.CRESCENTE){
+			return temp;
 		}
-		if(tipoOrdem.toLowerCase().equals("percentual")){
-			baguncaPercentual(vetor, 50);
+		else if(tipoOrdem == TiposOrdenacao.DECRESCENTE){
+			return ordenaInvensamente(temp);
 		}
-		return vetor;
+		else if(tipoOrdem == TiposOrdenacao.PERCENTUAL){
+			return baguncaPercentual(temp, 50);
+		}else if(tipoOrdem == TiposOrdenacao.ALEATORIO){
+			return baguncaVetor(temp);
+		}
+
+		return null;
+	}
+
+	public Integer[] baguncaVetor(Integer[] v){
+		List<Integer> temp = Arrays.stream(v).collect(Collectors.toList());
+		Collections.shuffle(temp);
+		return temp.stream().toArray(Integer[]::new);
 	}
 	
 	private boolean contains(Integer[] vetor, Integer v){
@@ -43,52 +63,53 @@ public class GeradorDeArrays {
 		return false;
 	}
 
-	// metodo para ordenar os vetores  
-	private void ordenar(Integer[] v) {
-		for(int i = 0; i < v.length-1; i++) {
-			boolean estaOrdenado = true;
-			for(int j = 0; j < v.length-1-i; j++) {
-				if(v[j + 1]==null){
-					break;
-				}
-				if(v[j] > v[j + 1]) {
-					Integer aux = v[j];
-					v[j] = v[j + 1];
-					v[j + 1] = aux;
-					estaOrdenado = false;
-				}
-			}
-			if(estaOrdenado)
-				break;
-		}
-	}
+	// // metodo para ordenar os vetores  
+	// private void ordenar(Integer[] v) {
+	// 	for(int i = 0; i < v.length-1; i++) {
+	// 		boolean esta = true;
+	// 		for(int j = 0; j < v.length-1-i; j++) {
+	// 			if(v[j + 1]==null){
+	// 				break;
+	// 			}
+	// 			if(v[j] > v[j + 1]) {
+	// 				Integer aux = v[j];
+	// 				v[j] = v[j + 1];
+	// 				v[j + 1] = aux;
+	// 				esta = false;
+	// 			}
+	// 		}
+	// 		if(esta)
+	// 			break;
+	// 	}
+	// }
 
 	// metodo para ordenar inversamente os vetores
 	private Integer[] ordenaInvensamente(Integer[] v){
-		for(int i = 0; i < v.length-1; i++) {
-			boolean estaOrdenado = true;
-			for(int j = 0; j < v.length-1-i; j++) {
-				if(v[j + 1]==null){
-					break;
-				}
-				if(v[j] < v[j + 1]) {
-					Integer aux = v[j];
-					v[j] = v[j + 1];
-					v[j + 1] = aux;
-					estaOrdenado = false;
-				}
-			}
-			if(estaOrdenado)
-				break;
-		}
-		return v;
+		// for(int i = 0; i < v.length-1; i++) {
+		// 	boolean esta = true;
+		// 	for(int j = 0; j < v.length-1-i; j++) {
+		// 		if(v[j + 1]==null){
+		// 			break;
+		// 		}
+		// 		if(v[j] < v[j + 1]) {
+		// 			Integer aux = v[j];
+		// 			v[j] = v[j + 1];
+		// 			v[j + 1] = aux;
+		// 			esta = false;
+		// 		}
+		// 	}
+		// 	if(esta)
+		// 		break;
+		// }
+		List<Integer> temp  = Arrays.stream(v).collect(Collectors.toList());
+		Collections.reverse(temp);
+		return temp.stream().toArray(Integer[]::new);
 	}
 
 	// metodo para ordenar percentual do array
 	private Integer[] baguncaPercentual(Integer[] v, int percentual){
 		int quantidade = (percentual*v.length)/100;
 		
-		ordenar(v);
 		if(quantidade%2!=0){
 			Integer n = 0;
 			do{
@@ -112,19 +133,24 @@ public class GeradorDeArrays {
 	public static void main(String[] args) {
 
 		int t = 1000000;
-		// crescente
-		System.out.print("[");
-		for(int i:new GeradorDeArrays().geradorDeArrayOrdenado(new Integer[t],"crescente"))
-			System.out.print(i+" ");
-		System.out.print("]");
-		// decrescente
+		// // crescente
+		// System.out.print("[");
+		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.CRESCENTE))
+		// 	System.out.print(i+" ");
+		// System.out.print("]");
+		// // // decrescente
+		// System.out.print("\n[");
+		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.DECRESCENTE))
+		// 	System.out.print(i+" ");
+		// System.out.print("]");
+		// // // percentual
+		// System.out.print("\n[");
+		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.PERCENTUAL))
+		// 	System.out.print(i+" ");
+		// System.out.print("]");
+		// Aleatorio
 		System.out.print("\n[");
-		for(int i:new GeradorDeArrays().geradorDeArrayOrdenado(new Integer[t],"decrescente"))
-			System.out.print(i+" ");
-		System.out.print("]");
-		// percentual
-		System.out.print("\n[");
-		for(int i:new GeradorDeArrays().geradorDeArrayOrdenado(new Integer[t],"percentual"))
+		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.ALEATORIO))
 			System.out.print(i+" ");
 		System.out.print("]");
 	}
