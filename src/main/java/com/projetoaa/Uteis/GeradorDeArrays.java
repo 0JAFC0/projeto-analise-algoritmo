@@ -108,12 +108,12 @@ public class GeradorDeArrays {
 
 	// metodo para ordenar percentual do array
 	private Integer[] baguncaPercentual(Integer[] v, int percentual){
-		int quantidade = (percentual*v.length)/100;
+		int quantidade = v.length-((percentual*v.length)/100);
 		
 		if(quantidade%2!=0){
 			Integer n = 0;
 			do{
-				n = (int)(Math.random()*((int)v.length*10));
+				n = (int)(Math.random()*((int)v.length));
 			}while(contains(v, n));
 			v[(int)(Math.random()*(v.length-1))] = n;
 		}
@@ -132,22 +132,22 @@ public class GeradorDeArrays {
 
 	public static void main(String[] args) {
 
-		int t = 1000000;
-		// // crescente
-		// System.out.print("[");
-		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.CRESCENTE))
-		// 	System.out.print(i+" ");
-		// System.out.print("]");
-		// // // decrescente
-		// System.out.print("\n[");
-		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.DECRESCENTE))
-		// 	System.out.print(i+" ");
-		// System.out.print("]");
-		// // // percentual
-		// System.out.print("\n[");
-		// for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.PERCENTUAL))
-		// 	System.out.print(i+" ");
-		// System.out.print("]");
+		int t = 10;
+		// crescente
+		System.out.print("[");
+		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.CRESCENTE))
+			System.out.print(i+" ");
+		System.out.print("]");
+		// // decrescente
+		System.out.print("\n[");
+		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.DECRESCENTE))
+			System.out.print(i+" ");
+		System.out.print("]");
+		// // percentual
+		System.out.print("\n[");
+		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.PERCENTUAL))
+			System.out.print(i+" ");
+		System.out.print("]");
 		// Aleatorio
 		System.out.print("\n[");
 		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.ALEATORIO))
