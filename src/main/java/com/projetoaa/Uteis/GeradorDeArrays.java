@@ -10,22 +10,6 @@ public class GeradorDeArrays {
 
 	public Integer[] geradorDeArray(int quantidade, TiposOrdenacao tipoOrdem) {
 
-		// boolean flag = true;
-		// int ultimoNumero = 2;
-		// int index = 0;
-		
-		// while(flag){
-			// 	Integer n = (int)(Math.random()*ultimoNumero);
-			
-			// 	if(index==vetor.length-1){
-				// 		flag = false;
-				// 	}else if(!contains(vetor, n)){
-					// 		vetor[index] = n;
-					// 		ultimoNumero = vetor[index] + 1;
-					
-					// 		index++;
-					// 	}
-					// }
 		Integer[] temp = IntStream.of(IntStream.range(1, quantidade).toArray()).boxed().toArray(Integer[]::new);
 					
 		if(tipoOrdem == TiposOrdenacao.CRESCENTE){
@@ -43,7 +27,7 @@ public class GeradorDeArrays {
 		return null;
 	}
 
-	public Integer[] baguncaVetor(Integer[] v){
+	private Integer[] baguncaVetor(Integer[] v){
 		List<Integer> temp = Arrays.stream(v).collect(Collectors.toList());
 		Collections.shuffle(temp);
 		return temp.stream().toArray(Integer[]::new);
@@ -130,30 +114,30 @@ public class GeradorDeArrays {
 		v[j] = aux;
 	}
 
-	public static void main(String[] args) {
+	// public static void main(String[] args) {
 
-		int t = 10;
-		// crescente
-		System.out.print("[");
-		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.CRESCENTE))
-			System.out.print(i+" ");
-		System.out.print("]");
-		// // decrescente
-		System.out.print("\n[");
-		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.DECRESCENTE))
-			System.out.print(i+" ");
-		System.out.print("]");
-		// // percentual
-		System.out.print("\n[");
-		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.PERCENTUAL))
-			System.out.print(i+" ");
-		System.out.print("]");
-		// Aleatorio
-		System.out.print("\n[");
-		for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.ALEATORIO))
-			System.out.print(i+" ");
-		System.out.print("]");
-	}
+	// 	int t = 10;
+	// 	// crescente
+	// 	System.out.print("[");
+	// 	for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.CRESCENTE))
+	// 		System.out.print(i+" ");
+	// 	System.out.print("]");
+	// 	// // decrescente
+	// 	System.out.print("\n[");
+	// 	for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.DECRESCENTE))
+	// 		System.out.print(i+" ");
+	// 	System.out.print("]");
+	// 	// // percentual
+	// 	System.out.print("\n[");
+	// 	for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.PERCENTUAL))
+	// 		System.out.print(i+" ");
+	// 	System.out.print("]");
+	// 	// Aleatorio
+	// 	System.out.print("\n[");
+	// 	for(int i:new GeradorDeArrays().geradorDeArray(t,TiposOrdenacao.ALEATORIO))
+	// 		System.out.print(i+" ");
+	// 	System.out.print("]");
+	// }
 	
 }
 
