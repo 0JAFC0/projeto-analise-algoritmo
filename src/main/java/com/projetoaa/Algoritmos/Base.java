@@ -36,33 +36,30 @@ public abstract class Base {
         for(int tamanho:tamanhos){
             System.out.println("Vetor com Quantidade: " + tamanho);
             System.out.println("Aleatorio:");
-            for(int vezes = 0;vezes < 10;vezes++){
+            for(int vezes = 0;vezes < 14;vezes++){
                 System.out.println("Laço: " + vezes);
                 Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.ALEATORIO);
                 Informacoes inf = new Informacoes(arr1);
                 calcularTempo(inf);
             }
-            System.out.println("Crescente:");
-            for(int vezes = 0;vezes < 10;vezes++){
-                System.out.println("Laço: " + vezes);
-                Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.CRESCENTE);
-                Informacoes inf = new Informacoes(arr1);
-                calcularTempo(inf);
-            }
-            System.out.println("Decrescente:");
-            for(int vezes = 0;vezes < 10;vezes++){
-                System.out.println("Laço: " + vezes);
-                Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.DECRESCENTE);
-                Informacoes inf = new Informacoes(arr1);
-                calcularTempo(inf);
-            }
+            
             System.out.println("Percentual:");
-            for(int vezes = 0;vezes < 10;vezes++){
+            for(int vezes = 0;vezes < 14;vezes++){
                 System.out.println("Laço: " + vezes);
                 Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.PERCENTUAL);
                 Informacoes inf = new Informacoes(arr1);
                 calcularTempo(inf);
             }
+
+            System.out.println("Crescente:");
+            Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.CRESCENTE);
+            Informacoes inf1 = new Informacoes(arr1);
+            calcularTempo(inf1);
+            
+            System.out.println("Decrescente:");
+            Integer[] arr2 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.DECRESCENTE);
+            Informacoes inf2 = new Informacoes(arr2);
+            calcularTempo(inf2);         
         }
     }
 }
