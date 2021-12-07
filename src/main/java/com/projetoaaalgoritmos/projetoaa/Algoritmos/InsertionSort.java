@@ -1,5 +1,10 @@
-package com.projetoaa.Algoritmos;
+package com.projetoaaalgoritmos.projetoaa.Algoritmos;
 
+import com.projetoaaalgoritmos.projetoaa.Uteis.Informacoes;
+
+import org.springframework.stereotype.Service;
+
+@Service
 public class InsertionSort extends Base{
 
     @Override
@@ -25,5 +30,7 @@ public class InsertionSort extends Base{
         // parte que seta no inf
         inf.setQuantComparacoes(quantComp);
         inf.setQuantidadeMovimentosRegistros(quantMovRegistro);
+        inf.setSizeVetor(inf.getVetor().length);
+        inf.setAlgoritmoName("Insertion Sort");
     }
 }

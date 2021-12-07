@@ -1,4 +1,4 @@
-package com.projetoaa.Uteis;
+package com.projetoaaalgoritmos.projetoaa.Uteis;
 
 import java.util.Arrays;
 import java.util.Collections;

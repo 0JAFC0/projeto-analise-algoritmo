@@ -1,6 +1,4 @@
-package com.projetoaa.Algoritmos;
-
-import com.projetoaa.Uteis.TiposOrdenacao;
+package com.projetoaaalgoritmos.projetoaa.Uteis;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +11,8 @@ public class Informacoes {
     private TiposOrdenacao tipoDeOrdenacao = null;
     private Long tempo = 0l;
     private Integer[] vetor;
+    private Integer sizeVetor;
+    private String AlgoritmoName;
 
     public Informacoes(Integer[] vetor){
         this.vetor = vetor;
