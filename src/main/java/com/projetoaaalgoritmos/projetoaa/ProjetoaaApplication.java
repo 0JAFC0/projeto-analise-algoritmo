@@ -1,6 +1,10 @@
 package com.projetoaaalgoritmos.projetoaa;
 
+import com.projetoaaalgoritmos.projetoaa.Algoritmos.BubbleSort;
 import com.projetoaaalgoritmos.projetoaa.Algoritmos.InsertionSort;
+import com.projetoaaalgoritmos.projetoaa.Algoritmos.MergeSort;
+import com.projetoaaalgoritmos.projetoaa.Algoritmos.QuickSort;
+import com.projetoaaalgoritmos.projetoaa.Algoritmos.SelectionSort;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +17,18 @@ public class ProjetoaaApplication implements CommandLineRunner{
 	@Autowired
 	private InsertionSort insertionSort;
 
+	@Autowired
+	private BubbleSort bubbleSort;
+
+	@Autowired
+	private SelectionSort selectionSort;
+
+	@Autowired
+	private MergeSort mergeSort;
+
+	@Autowired
+	private QuickSort quickSort;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoaaApplication.class, args);
 	}
@@ -20,6 +36,10 @@ public class ProjetoaaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		insertionSort.rodarAlgoritmo();
+		selectionSort.rodarAlgoritmo();
+		mergeSort.rodarAlgoritmo();
+		quickSort.rodarAlgoritmo();
+		bubbleSort.rodarAlgoritmo();
 	}
 	
 }

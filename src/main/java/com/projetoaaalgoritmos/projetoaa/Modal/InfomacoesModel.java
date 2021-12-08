@@ -2,6 +2,8 @@ package com.projetoaaalgoritmos.projetoaa.Modal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +29,7 @@ public class InfomacoesModel {
     private String AlgoritmoName;
     private Long quantComparacoes;
     private Long quantidadeMovimentosRegistros;
+    @Enumerated(EnumType.STRING)
     private TiposOrdenacao tipoDeOrdenacao;
     private Long tempo;
     private Integer sizeVetor;

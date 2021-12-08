@@ -39,68 +39,32 @@ public abstract class Base {
     }
 
     public void rodarAlgoritmo(){
-        Integer[] tamanhos = {10, 100, 1000, 10000, 100000};
+        Integer[] tamanhos = {10,100,1000,10000,100000};
+        Integer[] vezes = {14, 14, 1, 1};
+        TiposOrdenacao[] tipo = {TiposOrdenacao.ALEATORIO,TiposOrdenacao.PERCENTUAL,TiposOrdenacao.CRESCENTE,TiposOrdenacao.DECRESCENTE};
         for(int tamanho:tamanhos){
-            System.out.println("Vetor com Quantidade: " + tamanho);
-            System.out.println("Aleatorio:");
-            for(int vezes = 0;vezes < 14;vezes++){
-                System.out.println("Laço: " + vezes);
-                Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.ALEATORIO);
-                Informacoes inf = new Informacoes(arr1);
-                calcularTempo(inf);
-                InfomacoesModel entite = new InfomacoesModel();
-                entite.setId(1l);
-                entite.setQuantComparacoes(inf.getQuantComparacoes());
-                entite.setQuantidadeMovimentosRegistros(inf.getQuantidadeMovimentosRegistros());
-                entite.setTempo(inf.getTempo());
-                entite.setTipoDeOrdenacao(inf.getTipoDeOrdenacao());
-                entite.setSizeVetor(inf.getSizeVetor());
-                entite.setTipoDeOrdenacao(TiposOrdenacao.ALEATORIO);
-                entite.setAlgoritmoName(inf.getAlgoritmoName());
-                repository.save(entite);
+            for(int i = 0;i < vezes.length;i++){
+                salva(tamanho, vezes[i], tipo[i]);
             }
-            
-            System.out.println("Percentual:");
-            for(int vezes = 0;vezes < 14;vezes++){
-                System.out.println("Laço: " + vezes);
-                Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.ALEATORIO);
-                Informacoes inf = new Informacoes(arr1);
-                calcularTempo(inf);
-                InfomacoesModel entite = new InfomacoesModel();
-                entite.setId(1l);
-                entite.setQuantComparacoes(inf.getQuantComparacoes());
-                entite.setQuantidadeMovimentosRegistros(inf.getQuantidadeMovimentosRegistros());
-                entite.setTempo(inf.getTempo());
-                entite.setTipoDeOrdenacao(inf.getTipoDeOrdenacao());
-                entite.setSizeVetor(inf.getSizeVetor());
-                entite.setTipoDeOrdenacao(TiposOrdenacao.ALEATORIO);
-                entite.setAlgoritmoName(inf.getAlgoritmoName());
-                repository.save(entite);
-            }
-
-            System.out.println("Crescente:");
-            Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.CRESCENTE);
-            Informacoes inf1 = new Informacoes(arr1);
+        }
+    }
+    public void salva(Integer tamanho,Integer vezes,TiposOrdenacao tipo){
+        System.out.println("Vetor com Quantidade: " + tamanho);
+        System.out.println("Tipo: " + tipo.toString());
+        for(int v = 1;v <= vezes;v++){
+            System.out.println("Laço: " + v);
+            Integer[] arr1 = new GeradorDeArrays().geradorDeArray(tamanho, tipo);
+            Informacoes inf = new Informacoes(arr1);
+            calcularTempo(inf);
             InfomacoesModel entite = new InfomacoesModel();
-            entite.setQuantComparacoes(inf1.getQuantComparacoes());
-            entite.setQuantidadeMovimentosRegistros(inf1.getQuantidadeMovimentosRegistros());
-            entite.setTempo(inf1.getTempo());
-            entite.setTipoDeOrdenacao(inf1.getTipoDeOrdenacao());
-            entite.setSizeVetor(inf1.getSizeVetor());
+            entite.setId(0l);
+            entite.setQuantComparacoes(inf.getQuantComparacoes());
+            entite.setQuantidadeMovimentosRegistros(inf.getQuantidadeMovimentosRegistros());
+            entite.setTempo(inf.getTempo());
+            entite.setSizeVetor(inf.getVetor().length+1);
+            entite.setTipoDeOrdenacao(tipo);
+            entite.setAlgoritmoName(this.getClass().getSimpleName());
             repository.save(entite);
-            calcularTempo(inf1);
-            
-            System.out.println("Decrescente:");
-            Integer[] arr2 = new GeradorDeArrays().geradorDeArray(tamanho, TiposOrdenacao.DECRESCENTE);
-            Informacoes inf2 = new Informacoes(arr2);
-            entite = new InfomacoesModel();
-            entite.setQuantComparacoes(inf2.getQuantComparacoes());
-            entite.setQuantidadeMovimentosRegistros(inf2.getQuantidadeMovimentosRegistros());
-            entite.setTempo(inf2.getTempo());
-            entite.setTipoDeOrdenacao(inf2.getTipoDeOrdenacao());
-            entite.setSizeVetor(inf2.getSizeVetor());
-            repository.save(entite);
-            calcularTempo(inf2);         
         }
     }
 }

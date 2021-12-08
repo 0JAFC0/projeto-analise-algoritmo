@@ -17,4 +17,12 @@ public class Informacoes {
     public Informacoes(Integer[] vetor){
         this.vetor = vetor;
     }
+
+    public void adicionarMovimentosDeRegistros(Integer quant){
+        this.quantidadeMovimentosRegistros += quant;
+    }
+
+    public void adicionarComparacoes(Integer quant){
+        this.quantComparacoes += quant;
+    }
 }
