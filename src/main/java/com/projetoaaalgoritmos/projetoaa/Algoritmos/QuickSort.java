@@ -9,45 +9,68 @@ import com.projetoaaalgoritmos.projetoaa.Uteis.TiposOrdenacao;
 import org.springframework.stereotype.Service;
 
 @Service
-public class QuickSort extends Base{
+public class QuickSort extends Base {
 
     @Override
     protected void roda(Informacoes inf) {
-        sort(inf, 0, inf.getVetor().length-1);
+        quickSort(inf, inf.getVetor().length);
     }
 
-    protected int partition(Informacoes inf, int low, int high){
-        int pivot = inf.getVetor()[high];
-        inf.adicionarMovimentosDeRegistros(1);
-        int i = (low-1);
-        for (int j=low; j<high; j++){
+    public void quickSort(Informacoes inf,final int size) {
+        int l = 0;
+        int r = size - 1;
+        int q, i = 0;
+        int tmpr = r;
+        while (true) {
+            i--;
+            while (l < tmpr) {
+                q = partition(inf,l, tmpr);
+                inf.getVetor()[tmpr] = -inf.getVetor()[tmpr];
+                inf.adicionarMovimentosDeRegistros(1);
+                tmpr = q - 1;
+                ++i;
+            }
+            if (i < 0)
+                break;
+            l++;
+            tmpr = findNextR(inf,l, size);
+            inf.getVetor()[tmpr] = -inf.getVetor()[tmpr];
+            inf.adicionarMovimentosDeRegistros(1);
+        }
+    }
 
-            if (inf.getVetor()[j] <= pivot){
-                inf.adicionarComparacoes(1);
-                i++;
-
-                int temp = inf.getVetor()[i];
-                inf.getVetor()[i] = inf.getVetor()[j];
-                inf.getVetor()[j] = temp;
-                inf.adicionarMovimentosDeRegistros(3);
+    private int findNextR(Informacoes inf,final int l, final int size) {
+        for (int i = l; i < size; ++i) {
+            inf.adicionarComparacoes(1);
+            if (inf.getVetor()[i] < 0){
+                return i;
             }
         }
-
-        int temp = inf.getVetor()[i+1];
-        inf.getVetor()[i+1] = inf.getVetor()[high];
-        inf.getVetor()[high] = temp;
-        inf.adicionarMovimentosDeRegistros(3);
-  
-        return i+1;
+        return size - 1;
     }
-  
-    protected void sort(Informacoes inf, int low, int high){
-        if (low < high){
-            int pi = partition(inf, low, high);
 
-            sort(inf, low, pi-1);
-            sort(inf, pi+1, high);
+    private int partition(Informacoes inf,int l, int r) {
+        long pivot = inf.getVetor()[(l + r) / 2];
+        inf.adicionarMovimentosDeRegistros(1);
+        while (l <= r) {
+            while (inf.getVetor()[r] > pivot){
+                inf.adicionarComparacoes(1);
+                r--;
+            }
+            while (inf.getVetor()[l] < pivot){
+                inf.adicionarComparacoes(1);
+                l++;
+            }
+            if (l <= r) {
+                Integer tmp = inf.getVetor()[r];
+                inf.getVetor()[r] = inf.getVetor()[l];
+                inf.getVetor()[l] = tmp;
+                inf.adicionarMovimentosDeRegistros(3);
+                l++;
+                r--;
+            }
         }
+        return l;
     }
 
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+//classe responsavel por gerar os Arrays dos tipos especificos e dos tamanhos
 public class GeradorDeArrays {
 
 	public Integer[] geradorDeArray(int quantidade, TiposOrdenacao tipoOrdem) {

@@ -22,6 +22,7 @@ import lombok.Setter;
 @Table(name = "T_INFORMACOES")
 public class InfomacoesModel {
     
+    // atributos do Model entitidade que é salva no banco
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")

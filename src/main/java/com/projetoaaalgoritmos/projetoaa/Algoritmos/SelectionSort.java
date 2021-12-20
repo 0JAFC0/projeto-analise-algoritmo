@@ -16,8 +16,8 @@ public class SelectionSort extends Base{
             int min_idx = i;
             inf.adicionarMovimentosDeRegistros(1);
             for (int j = i+1; j < n; j++){
+                inf.adicionarComparacoes(1);
                 if (inf.getVetor()[j] < inf.getVetor()[min_idx]){
-                    inf.adicionarComparacoes(1);
                     min_idx = j;
                     inf.adicionarMovimentosDeRegistros(1);
                 }

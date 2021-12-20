@@ -36,14 +36,13 @@ public class MergeSort extends Base{
  
         int k = l;
         while (i < n1 && j < n2){
+            inf.adicionarComparacoes(1);
             if (L[i] <= R[j]){
-                inf.adicionarComparacoes(1);
                 inf.getVetor()[k] = L[i];
                 inf.adicionarMovimentosDeRegistros(1);
                 i++;
             }
             else{
-                inf.adicionarComparacoes(1);
                 inf.getVetor()[k] = R[j];
                 inf.adicionarMovimentosDeRegistros(1);
                 j++;

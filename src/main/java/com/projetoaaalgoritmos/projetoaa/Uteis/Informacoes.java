@@ -3,6 +3,7 @@ package com.projetoaaalgoritmos.projetoaa.Uteis;
 import lombok.Getter;
 import lombok.Setter;
 
+// classe utilizando para ser manipulada no algoritmo base e nos algoritmos de ordenacao
 @Setter
 @Getter
 public class Informacoes {
